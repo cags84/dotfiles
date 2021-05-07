@@ -1,0 +1,44 @@
+---
+ip: "192.168.10.10"
+memory: 4096
+cpus: 4
+provider: virtualbox
+
+authorize: ~/.ssh/sandbox_rsa.pub
+
+keys:
+    - ~/.ssh/sandbox_rsa
+
+folders:
+    - map: C:\Code\
+      to: /home/vagrant/code
+
+sites:
+    - map: laravel-tdd-1.local
+      to: /home/vagrant/code/laravel-tdd-1/public
+      php: "7.4"
+
+databases:
+    - homestead
+
+features:
+    - mysql: false
+    - mariadb: true
+    - postgresql: true
+    - ohmyzsh: true
+    - webdriver: false
+    - docker: true
+    - mongodb: true
+
+services:
+    - enabled:
+        - "postgresql@12-main"
+#    - disabled:
+#        - "postgresql@11-main"
+
+ports:
+    - send: 3000
+      to: 3000
+#     - send: 7777
+#       to: 777
+#       protocol: udp
